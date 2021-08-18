@@ -1,0 +1,25 @@
+Create database Cadastro
+
+create table Pessoa (
+Id_Usuario Int primary key identity(100,1),
+Nome varchar(300) not null,
+Cidade varchar(300) not null,
+Estado varchar(150) not null
+)
+
+create table Contato (
+Id_Contato Int primary key identity(100,1),
+Pessoa INT Foreign Key table Pessoa,
+Email varchar(150) not null,
+DDD varchar(3) not null,
+Telefone varchar(15) not null
+)
+
+create table StatusMensagemEnviada (
+Id_Status Int primary key identity(100,1),
+Pessoa INT Foreign Key table Pessoa,
+Contato INT Foreign Key table Contato,
+Assunto varchar (1000) not null,
+MensagemEnviada varchar max not null,
+RetornoSite varchar max
+)
