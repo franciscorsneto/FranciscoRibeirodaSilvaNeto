@@ -1,25 +1,28 @@
-Create database Cadastro
+use TesteFranciscoRibeiro;
 
-create table Pessoa (
-Id_Usuario Int primary key identity(100,1),
-Nome varchar(300) not null,
-Cidade varchar(300) not null,
-Estado varchar(150) not null
-)
+create table Tbl_pessoa (
+	Id INT Primary Key,
+    nome varchar(300) not null,
+	cidade varchar(300) not null,
+	estado varchar(150) not null
+);
 
-create table Contato (
-Id_Contato Int primary key identity(100,1),
-Pessoa INT Foreign Key table Pessoa,
-Email varchar(150) not null,
-DDD varchar(3) not null,
-Telefone varchar(15) not null
-)
+create table Tbl_contato (
+Id INT Primary Key,
+Id_pessoa INT,
+Email VARCHAR (150) not null,
+DDD VARCHAR (3) not null,
+Telefone VARCHAR (15) not null,
+Foreign Key(Id_pessoa) references Tbl_pessoa(Id)
+);
 
-create table StatusMensagemEnviada (
-Id_Status Int primary key identity(100,1),
-Pessoa INT Foreign Key table Pessoa,
-Contato INT Foreign Key table Contato,
-Assunto varchar (1000) not null,
-MensagemEnviada varchar max not null,
-RetornoSite varchar max
-)
+create table Tbl_StatusMensagemEnviada (
+Id INT Primary Key,
+Id_pessoa INT,
+Id_contato INT,
+Assunto VARCHAR (1000) not null,
+MensagemEnviada Text,
+RetornoSite Text,
+Foreign Key(Id_pessoa) references Tbl_pessoa(Id),
+Foreign Key(Id_contato) references Tbl_contato(Id)
+);
