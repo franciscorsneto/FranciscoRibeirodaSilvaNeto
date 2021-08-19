@@ -1,4 +1,4 @@
-use TesteFranciscoRibeiro;
+Create database TesteFranciscoRibeiro;
 
 create table Tbl_pessoa (
 	Id INT Primary Key,
@@ -9,7 +9,7 @@ create table Tbl_pessoa (
 
 create table Tbl_contato (
 Id INT Primary Key,
-Id_pessoa INT,
+Id_contato INT,
 Email VARCHAR (150) not null,
 DDD VARCHAR (3) not null,
 Telefone VARCHAR (15) not null,
