@@ -1,0 +1,43 @@
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+-- Table struct for table `contato`
+
+CREATE DATABASE forms;
+
+USE forms;
+
+CREATE TABLE IF NOT EXISTS pessoa (
+id_pessoa int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+nome varchar(300) NOT NULL,
+cidade varchar(300) NOT NULL,
+estado varchar(150) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS contato (
+id_contato int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+cod_pessoa int,
+email varchar(150) NOT NULL,
+ddd varchar(3) NOT NULL,
+telefone varchar(15) NOT NULL,
+FOREIGN KEY(cod_pessoa) REFERENCES pessoa(id_pessoa)
+);
+
+CREATE TABLE IF NOT EXISTS statusmensagemenviada (
+id_msg int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+cod_pessoa int,
+cod_contato int,
+assunto varchar(1000) NOT NULL,
+mensagemenviada text NOT NULL,
+retornosite text NOT NULL DEFAULT 'Sua mensagem é muito importante, obrigado!',
+FOREIGN KEY(cod_pessoa) REFERENCES pessoa(id_pessoa),
+FOREIGN KEY(cod_contato) REFERENCES pessoa(id_contato)
+);
