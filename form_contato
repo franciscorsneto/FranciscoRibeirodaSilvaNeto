@@ -1,0 +1,51 @@
+import time
+import webbrowser
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+
+
+class bot():
+    def _init_(self):
+        self.Nome = input('Digite seu nome: ')
+        self.Email = input('O seu melhor email é? ')
+        self.Cep = input('Cep da residência: ')
+        self.Estado = input('Estado onde mora: ')
+        self.Cidade = input('Cidade onde mora: ')
+        self.Assunto = input('Assunto desejado: ')
+        self.Telefone = input('Número para contato: ')
+        self.Mensagem = input('Digite sua mensagam: ')
+
+        self.drive = webdriver.Chrome(executable_path=r'C:\Usuários\franc\OneDrive.exe')
+    def preencherForms(self): 
+         drive = self.drive
+         drive.get('https://seguralta.com.br/site/contato')
+         
+         time.sleep(3)
+
+         Nome = drive.find_element_by_xpath('//*[@id="name"]')
+         Telefone = drive.find_element_by_xpath('//*[@id="telefone"]')
+         Email = drive.find_element_by_xpath('//*[@id="email"]')
+         Cidade = drive.find_element_by_xpath('//*[@id="cidade"]')
+         Estado = drive.find_element_by_xpath('//*[@id="estado"]')
+         Cep = drive.find_element_by_xpath('//*[@id="cep"]')
+         Assunto = drive.find_element_by_xpath('//*[@id="assunto"]')
+         Mensagem = drive.find_element_by_xpath('//*[@id="mensagem"]')
+
+         Botão = drive.find_element_by_xpath('//*[@id="formcontato"]/div[4]/div[2]/input')
+
+         Nome.send_keys(self.Nome)
+         Telefone.send_keys(self.Telefone)
+         Email.send_keys(self.Email)
+         Cidade.send_keys(self.Cidade)
+         Estado.send_keys(self.Estado)
+         Cep.send_keys(self.Cep)
+         Assunto.send_keys(self.Assunto)
+         Mensagem.send_keys(self.Mensagem)
+
+         Botão.click()
+
+
+
+      
+bot = bot() 
+bot.preencherForms()
